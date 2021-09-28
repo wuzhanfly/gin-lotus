@@ -1,0 +1,10 @@
+info:
+  contact: {}
+  description: GinLaravel Web Framework. 2021. In Changsha. Powered By Gin & Laravel
+    & Others, Think You.
+  title: GinLaravel、GL、Ginvel
+paths:
+  /:
+    get:
+      description: 测试api
+swagger: "2.0"

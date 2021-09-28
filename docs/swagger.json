@@ -1,0 +1,15 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "GinLaravel Web Framework. 2021. In Changsha. Powered By Gin \u0026 Laravel \u0026 Others, Think You.",
+        "title": "GinLaravel、GL、Ginvel",
+        "contact": {}
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "description": "测试api"
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+{
+  "gl_version": "gl-1.9-21.0630.10",
+  "framework_path": "",
+  "framework_desc": {
+    "Desc": "本框架是Golang的web MVC框架，基础特性基于Gin。",
+    "Author": "wuzhanfly",
+    "Email": "whanfly@163.com",
+    "Github": "github.com/wuzhanfly"
+  },
+  "config": {
+    "timezone": "Asia/Shanghai",
+    "api_version_block": "0&0",
+    "web_version_block": "0&0",
+    "server": {
+      "HOST": "127.0.0.1",
+      "PORT": "8090",
+      "ENV": "release"
+    },
+    "grpc": {
+      "HOST": "127.0.0.1",
+      "PORT": "9090"
+    },
+    "mysql": {
+      "DB_HOST": "127.0.0.1",
+      "DB_PORT": "3306",
+      "DB_NAME": "ginlaravel",
+      "DB_USER": "root2",
+      "DB_PWD": "12345678",
+      "DB_CHARSET": "utf8mb4"
+    },
+    "redis": {
+      "Addr": "192.168.131.24:6379",
+      "Password": "12345678",
+      "DB": "0"
+    },
+    "view": {
+      "View_Static": "storage/static/"
+    }
+  },
+  "common":{
+    "log_debug": "true"
+  }
+
+}
