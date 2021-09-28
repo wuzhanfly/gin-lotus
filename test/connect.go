@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"ginvel.com/app/Common"
 	"github.com/robfig/cron/v3"
 	"log"
 	"os"
@@ -9,7 +10,7 @@ import (
 )
 
 var peers = []string{"f0688165", "f0127595", "f0142720", "f0123261", "f0135467", "f0442370", "f0131822", "f0134867", "f0154294", "f0128559", "f025002", "f0133509", "f0133505", "f01248", "f02770", "f01238", "f070932", "f01231", "f021479", "f0152337", "f016398", "f03176", "f0143858", "f019354", "f07830", "f02303", "f020330", "f02626", "f0133957", "/dns4/bootstrap-0.mainnet.filops.net/tcp/1347/p2p/12D3KooWCVe8MmsEMes2FzgTpt9fXtmCY7wrq91GRiaC8PHSCCBj", "/dns4/bootstrap-1.mainnet.filops.net/tcp/1347/p2p/12D3KooWCwevHg1yLCvktf2nvLu7L9894mcrJR4MsBCcm4syShVc", "/dns4/bootstrap-2.mainnet.filops.net/tcp/1347/p2p/12D3KooWEWVwHGn2yR36gKLozmb4YjDJGerotAPGxmdWZx2nxMC4", "/dns4/bootstrap-3.mainnet.filops.net/tcp/1347/p2p/12D3KooWKhgq8c7NQ9iGjbyK7v7phXvG6492HQfiDaGHLHLQjk7R", "/dns4/bootstrap-4.mainnet.filops.net/tcp/1347/p2p/12D3KooWL6PsFNPhYftrJzGgF5U18hFoaVhfGk7xwzD8yVrHJ3Uc", "/dns4/bootstrap-5.mainnet.filops.net/tcp/1347/p2p/12D3KooWLFynvDQiUpXoHroV1YxKHhPJgysQGH2k3ZGwtWzR4dFH", "/dns4/bootstrap-6.mainnet.filops.net/tcp/1347/p2p/12D3KooWP5MwCiqdMETF9ub1P3MbCvQCcfconnYHbWg6sUJcDRQQ", "/dns4/bootstrap-7.mainnet.filops.net/tcp/1347/p2p/12D3KooWRs3aY1p3juFjPy8gPN95PEQChm2QKGUCAdcDCC4EBMKf", "/dns4/bootstrap-8.mainnet.filops.net/tcp/1347/p2p/12D3KooWScFR7385LTyR4zU1bYdzSiiAb5rnNABfVahPvVSzyTkR", "/dns4/lotus-bootstrap.ipfsforce.com/tcp/41778/p2p/12D3KooWGhufNmZHF3sv48aQeS13ng5XVJZ9E6qy2Ms4VzqeUsHk", "/dns4/bootstrap-0.starpool.in/tcp/12757/p2p/12D3KooWGHpBMeZbestVEWkfdnC9u7p6uFHXL1n7m1ZBqsEmiUzz", "/dns4/bootstrap-1.starpool.in/tcp/12757/p2p/12D3KooWQZrGH1PxSNZPum99M1zNvjNFM33d1AAu5DcvdHptuU7u", "/dns4/node.glif.io/tcp/1235/p2p/12D3KooWBF8cpp65hp2u9LK5mh19x67ftAam84z9LsfaquTDSBpt", "/dns4/bootstrap-0.ipfsmain.cn/tcp/34721/p2p/12D3KooWQnwEGNqcM2nAcPtRR9rAX8Hrg4k9kJLCHoTR5chJfz6d", "/dns4/bootstrap-1.ipfsmain.cn/tcp/34723/p2p/12D3KooWMKxMkD5DMpSWsW7dBddKxKT7L2GgbNuckz9otxvkvByP"}
-
+var timeout time.Duration = 3000 * time.Millisecond
 func main() {
 
 	//connectPeer()
@@ -56,8 +57,6 @@ func main() {
 
 	}()
 
-
-
 }
 
 // TimeInterval 全局定时器，默认精度30s/次
@@ -77,19 +76,21 @@ func TimeInterval(intervalId int, num int, timeout string) {
 }
 
 func connectPeer() {
-	fmt.Println("关闭主机")
+	fmt.Println(`
+=========================
+    lutos net connect
+==========================
+	`)
 	for _, r := range peers {
-		cmt := fmt.Sprintf("/opt/raid0/lotus/bin/lotus net conect %s", r)
-		fmt.Println(cmt)
-		//arg := []string{"-s", "-t", "20"}
-		//cmd := exec.Command(cmt, arg...)
-		//d, err := cmd.CombinedOutput()
-		//if err != nil {
-		//	log.Println("Error:", err)
-		//	return
-		//}
-		//fmt.Println(string(d))
-		//return
 
+		cmd := fmt.Sprintf("lotus net connect %s", r)
+		fmt.Println(cmd)
+		res,err :=Common.ExecCmd(cmd,timeout)
+		if err != nil {
+			log.Println("Error:", err)
+		}
+
+		fmt.Println(string(res))
+		//return
 	}
 }
