@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"ginvel.com/app/Common"
 	"github.com/robfig/cron/v3"
 	"log"
 	"os"
@@ -72,25 +71,22 @@ func TimeInterval(intervalId int, num int, timeout string) {
 		log.Println("全局定时器日志显示已关闭，定时任务会继续运行。maxLog=", maxLog)
 	}
 	// 其他定时任务
-	connectPeer() //connect peers
+	//connectPeer() //connect peers
 }
 
-func connectPeer() {
-	fmt.Println(`
-=========================
-    lutos net connect
-==========================
-	`)
-	for _, r := range peers {
-
-		cmd := fmt.Sprintf("lotus net connect %s", r)
-		fmt.Println(cmd)
-		res,err :=Common.ExecCmd(cmd,timeout)
-		if err != nil {
-			log.Println("Error:", err)
-		}
-
-		fmt.Println(string(res))
-		//return
-	}
-}
+//func connectPeer() {
+//	fmt.Println(`
+//=========================
+//    lutos net connect
+//==========================
+//	`)
+//	for _, r := range peers {
+//		cmd := fmt.Sprintf("lotus net connect %s", r)
+//		fmt.Println(cmd)
+//		res,err :=Common.ExecCmd(cmd,timeout)
+//		if err != nil {
+//			log.Println("Error:", err)
+//		}
+//		fmt.Println(string(res))
+//	}
+//}
